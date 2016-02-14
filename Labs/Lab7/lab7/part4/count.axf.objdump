@@ -1,0 +1,151 @@
+
+//SRVB/Homes$/shirunji/Desktop/lab7/part4/count.axf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__cs3_interrupt_vector>:
+	.text
+	.global _start
+_start:
+		LDR 	R8, =TEST_NUM
+   0:	e59f8104 	ldr	r8, [pc, #260]	; 10c <TEST_NUM+0x48>
+		MOV 	R5, #0
+   4:	e3a05000 	mov	r5, #0
+		MOV 	R6, #0
+   8:	e3a06000 	mov	r6, #0
+		MOV 	R7, #0
+   c:	e3a07000 	mov	r7, #0
+
+00000010 <MAINLOOP>:
+MAINLOOP: LDR R1, [R8], #4 // load the data word into R1
+  10:	e4981004 	ldr	r1, [r8], #4
+		CMP R1, #0
+  14:	e3510000 	cmp	r1, #0
+		BEQ END
+  18:	0a00000f 	beq	5c <END>
+		PUSH 	{R1}
+  1c:	e52d1004 	push	{r1}		; (str r1, [sp, #-4]!)
+		BL		ONES
+  20:	eb00001f 	bl	a4 <ONES>
+		POP		{R1}
+  24:	e49d1004 	pop	{r1}		; (ldr r1, [sp], #4)
+		CMP 	R5, R0
+  28:	e1550000 	cmp	r5, r0
+		MOVLT 	R5, R0
+  2c:	b1a05000 	movlt	r5, r0
+		PUSH 	{R1, R5}
+  30:	e92d0022 	push	{r1, r5}
+		BL		ZEROS
+  34:	eb000015 	bl	90 <ZEROS>
+		POP		{R1, R5}
+  38:	e8bd0022 	pop	{r1, r5}
+		CMP 	R6, R0
+  3c:	e1560000 	cmp	r6, r0
+		MOVLT 	R6, R0
+  40:	b1a06000 	movlt	r6, r0
+		PUSH 	{R5-R6}
+  44:	e92d0060 	push	{r5, r6}
+		BL		ALTERNATE
+  48:	eb000004 	bl	60 <ALTERNATE>
+		POP		{R5-R6}
+  4c:	e8bd0060 	pop	{r5, r6}
+		CMP 	R7, R0
+  50:	e1570000 	cmp	r7, r0
+		MOVLT 	R7, R0
+  54:	b1a07000 	movlt	r7, r0
+		B 		MAINLOOP
+  58:	eaffffec 	b	10 <MAINLOOP>
+
+0000005c <END>:
+END: 	B 		END
+  5c:	eafffffe 	b	5c <END>
+
+00000060 <ALTERNATE>:
+
+ALTERNATE:	LDR R2, =0xaaaaaaaa
+  60:	e59f20a8 	ldr	r2, [pc, #168]	; 110 <TEST_NUM+0x4c>
+		EOR 	R1, R1, R2
+  64:	e0211002 	eor	r1, r1, r2
+		PUSH 	{R1, LR}
+  68:	e92d4002 	push	{r1, lr}
+		BL 		ONES
+  6c:	eb00000c 	bl	a4 <ONES>
+		POP		{R1, LR}
+  70:	e8bd4002 	pop	{r1, lr}
+		MOV 	R3, R0
+  74:	e1a03000 	mov	r3, r0
+		PUSH 	{R1, LR}
+  78:	e92d4002 	push	{r1, lr}
+		BL		ZEROS
+  7c:	eb000003 	bl	90 <ZEROS>
+		POP		{R1, LR}
+  80:	e8bd4002 	pop	{r1, lr}
+		CMP		R0, R3
+  84:	e1500003 	cmp	r0, r3
+		MOVLT 	R0, R3	// R0 will hold the result
+  88:	b1a00003 	movlt	r0, r3
+
+0000008c <END_ALTERNATE>:
+END_ALTERNATE: MOV PC, LR
+  8c:	e1a0f00e 	mov	pc, lr
+
+00000090 <ZEROS>:
+
+ZEROS:	MOV R2, #0xffffffff
+  90:	e3e02000 	mvn	r2, #0
+		EOR R1, R1, R2
+  94:	e0211002 	eor	r1, r1, r2
+		PUSH 	{LR}
+  98:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+		BL ONES
+  9c:	eb000000 	bl	a4 <ONES>
+
+000000a0 <END_ZEROS>:
+END_ZEROS: POP 	{PC}
+  a0:	e49df004 	pop	{pc}		; (ldr pc, [sp], #4)
+
+000000a4 <ONES>:
+
+ONES:	MOV R0, #0 // R0 will hold the result
+  a4:	e3a00000 	mov	r0, #0
+
+000000a8 <ONES_LOOP>:
+ONES_LOOP: 	CMP R1, #0 // ONES_loop until the data contains no more 1s
+  a8:	e3510000 	cmp	r1, #0
+		BEQ END_ONES
+  ac:	0a000003 	beq	c0 <END_ONES>
+		LSR R2, R1, #1 // perform SHIFT, followed by AND
+  b0:	e1a020a1 	lsr	r2, r1, #1
+		AND R1, R1, R2
+  b4:	e0011002 	and	r1, r1, r2
+		ADD R0, #1 // count the string lengths so far
+  b8:	e2800001 	add	r0, r0, #1
+		B ONES_LOOP
+  bc:	eafffff9 	b	a8 <ONES_LOOP>
+
+000000c0 <END_ONES>:
+END_ONES: MOV PC, LR
+  c0:	e1a0f00e 	mov	pc, lr
+
+000000c4 <TEST_NUM>:
+  c4:	f0f0f0f0 	.word	0xf0f0f0f0
+  c8:	103fe00f 	.word	0x103fe00f
+  cc:	103fe00e 	.word	0x103fe00e
+  d0:	103fe00d 	.word	0x103fe00d
+  d4:	103fe00c 	.word	0x103fe00c
+  d8:	103fe00b 	.word	0x103fe00b
+  dc:	103fe00a 	.word	0x103fe00a
+  e0:	103fe009 	.word	0x103fe009
+  e4:	103fe008 	.word	0x103fe008
+  e8:	103fe007 	.word	0x103fe007
+  ec:	103fe006 	.word	0x103fe006
+  f0:	103fe005 	.word	0x103fe005
+  f4:	103fe004 	.word	0x103fe004
+  f8:	103fe003 	.word	0x103fe003
+  fc:	ffffffff 	.word	0xffffffff
+ 100:	00000001 	.word	0x00000001
+ 104:	aaaaaaab 	.word	0xaaaaaaab
+ 108:	00000000 	.word	0x00000000
+ 10c:	000000c4 	.word	0x000000c4
+ 110:	aaaaaaaa 	.word	0xaaaaaaaa

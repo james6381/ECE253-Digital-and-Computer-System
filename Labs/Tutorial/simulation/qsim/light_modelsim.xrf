@@ -1,0 +1,9 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/Haowei/Desktop/U of T Courses/Year 2 Fall/ECE253/Labs/Tutorial/light.v
+source_file = 1, C:/Users/Haowei/Desktop/U of T Courses/Year 2 Fall/ECE253/Labs/Tutorial/light.vwf
+source_file = 1, C:/Users/Haowei/Desktop/U of T Courses/Year 2 Fall/ECE253/Labs/Tutorial/db/light.cbx.xml
+design_name = light
+instance = comp, \f~output , f~output, light, 1
+instance = comp, \x1~input , x1~input, light, 1
+instance = comp, \x2~input , x2~input, light, 1
+instance = comp, \f~0 , f~0, light, 1

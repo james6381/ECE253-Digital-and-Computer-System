@@ -1,0 +1,34 @@
+# do part1.do
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 20:43:44 on Oct 26,2015
+# vlog -work work part1.vo 
+# -- Compiling module part1
+# 
+# Top level modules:
+# 	part1
+# End time: 20:43:45 on Oct 26,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 20:43:45 on Oct 26,2015
+# vlog -work work simulation_part1.vwf.vt 
+# -- Compiling module part1_vlg_sample_tst
+# -- Compiling module part1_vlg_check_tst
+# -- Compiling module part1_vlg_vec_tst
+# 
+# Top level modules:
+# 	part1_vlg_vec_tst
+# End time: 20:43:45 on Oct 26,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -c -do "part1.do" 
+# Start time: 20:43:45 on Oct 26,2015
+# Loading work.part1_vlg_vec_tst
+# Loading work.part1
+# Loading altera_ver.dffeas
+# Loading work.part1_vlg_sample_tst
+# Loading work.part1_vlg_check_tst
+# Loading altera_ver.PRIM_GDFF_LOW
+# Simulation passed !
+# ** Note: $finish    : simulation_part1.vwf.vt(286)
+#    Time: 1 us  Iteration: 0  Instance: /part1_vlg_vec_tst/tb_out
+# End time: 20:43:48 on Oct 26,2015, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0

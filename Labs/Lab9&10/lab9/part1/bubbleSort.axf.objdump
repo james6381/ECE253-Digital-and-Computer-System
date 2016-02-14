@@ -1,0 +1,85 @@
+
+//SRVB/Homes$/shirunji/Desktop/lab9/part1/bubbleSort.axf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__cs3_interrupt_vector>:
+}
+*/
+
+        .text
+        .global _start
+_start: LDR     R10, =List
+   0:	e59fa088 	ldr	r10, [pc, #136]	; 90 <List+0x2c>
+        LDR     R4, [R10]
+   4:	e59a4000 	ldr	r4, [r10]
+        LSL     R11, R4, #2
+   8:	e1a0b104 	lsl	r11, r4, #2
+        ADD     R11, R11, #4
+   c:	e28bb004 	add	r11, r11, #4
+        MOV     R8, #1
+  10:	e3a08001 	mov	r8, #1
+
+00000014 <Outer>:
+Outer:  SUBS    R11, #4
+  14:	e25bb004 	subs	r11, r11, #4
+        BEQ     End
+  18:	0a00000d 	beq	54 <End>
+        CMP     R8, #0
+  1c:	e3580000 	cmp	r8, #0
+        BEQ     End
+  20:	0a00000b 	beq	54 <End>
+        MOV     R8, #0
+  24:	e3a08000 	mov	r8, #0
+        MOV     R5, #0
+  28:	e3a05000 	mov	r5, #0
+
+0000002c <Inner>:
+Inner:  ADD     R5, #4
+  2c:	e2855004 	add	r5, r5, #4
+        CMP     R5, R11
+  30:	e155000b 	cmp	r5, r11
+        BEQ     Outer
+  34:	0afffff6 	beq	14 <Outer>
+        ADD     R9, R10, R5
+  38:	e08a9005 	add	r9, r10, r5
+        LDR     R6, [R9]
+  3c:	e5996000 	ldr	r6, [r9]
+        LDR     R7, [R9, #4]
+  40:	e5997004 	ldr	r7, [r9, #4]
+        CMP     R6, R7
+  44:	e1560007 	cmp	r6, r7
+        BLLT    Swap
+  48:	bb000002 	bllt	58 <Swap>
+        MOVLT   R8, #1
+  4c:	b3a08001 	movlt	r8, #1
+        B       Inner
+  50:	eafffff5 	b	2c <Inner>
+
+00000054 <End>:
+End:    B       End
+  54:	eafffffe 	b	54 <End>
+
+00000058 <Swap>:
+
+Swap:   STR     R6, [R9, #4]
+  58:	e5896004 	str	r6, [r9, #4]
+        STR     R7, [R9]
+  5c:	e5897000 	str	r7, [r9]
+        MOV     PC, LR
+  60:	e1a0f00e 	mov	pc, lr
+
+00000064 <List>:
+  64:	0000000a 	.word	0x0000000a
+  68:	00000578 	.word	0x00000578
+  6c:	0000002d 	.word	0x0000002d
+  70:	00000017 	.word	0x00000017
+  74:	00000005 	.word	0x00000005
+  78:	00000003 	.word	0x00000003
+  7c:	00000008 	.word	0x00000008
+  80:	00000011 	.word	0x00000011
+  84:	00000004 	.word	0x00000004
+  88:	00000014 	.word	0x00000014
+  8c:	00000021 	.word	0x00000021
+  90:	00000064 	.word	0x00000064

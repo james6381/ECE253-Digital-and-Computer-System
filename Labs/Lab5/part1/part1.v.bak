@@ -1,0 +1,5 @@
+module part1(input D, clock, output reg Q_a, notQ_a, Q_b, notQ_b, Q_c, notQ_c);
+	D_Latch D0(D, clock, Q_a, notQ_a);
+	FF F0(D, clock, Q_b, notQ_b);
+	FF F1(D, ~clock, Q_c, notQ_c);
+endmodule

@@ -1,0 +1,90 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Haowei/Desktop/U of T Courses/Year 2 Fall/ECE253/Labs/Tutorial/simulation/qsim
+vlight
+Z1 !s110 1443490766
+!i10b 1
+!s100 DTcN^EBkCn?Yj30QnnJQS2
+IYPQHQOcff=S>aQIYQ>I3V1
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+w1443490764
+8light.vo
+Flight.vo
+L0 32
+Z3 OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1443490765.996000
+!s107 light.vo|
+!s90 -work|work|light.vo|
+!i113 1
+Z4 o-work work
+vlight_vlg_check_tst
+R1
+!i10b 1
+!s100 EO;N_Dg3=9Rc_Bg31@Lo63
+I[6e5Uh=fS8EMg`3f;aAbD0
+R2
+R0
+Z5 w1443490759
+Z6 8light.vwf.vt
+Z7 Flight.vwf.vt
+L0 60
+R3
+r1
+!s85 0
+31
+Z8 !s108 1443490766.111000
+Z9 !s107 light.vwf.vt|
+Z10 !s90 -work|work|light.vwf.vt|
+!i113 1
+R4
+vlight_vlg_sample_tst
+R1
+!i10b 1
+!s100 hX@P^]Dn[hCbbBGdh^Tgn2
+I0N4JjdoHjWcAPEi8K3QO_0
+R2
+R0
+R5
+R6
+R7
+L0 30
+R3
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R4
+vlight_vlg_vec_tst
+R1
+!i10b 1
+!s100 MQRgfT6Z:G]<@ZeQoJf1j0
+IC_^d0z?j7i2G5f0QWZYX53
+R2
+R0
+R5
+R6
+R7
+L0 155
+R3
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R4

@@ -1,0 +1,15 @@
+		.text
+		.global KEY_ISR
+
+KEY_ISR:	LDR	R0, =0xFF200050
+			LDR R1, [R0, #0xC]
+			STR R1, [R0, #0xC]
+CHK_KEY3:	TST	R1, #0b1000
+			BEQ END_KEY_ISR
+			
+			LDR R0, =0xFFFEC600
+			LDR R1, [R0, #0x8]
+			EOR R1, R1, #1
+			STR R1, [R0, #0x8]
+
+END_KEY_ISR:MOV PC LR 

@@ -1,0 +1,116 @@
+
+//SRVB/Homes$/shirunji/Desktop/lab9/part2/address_map_arm.axf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__cs3_interrupt_vector>:
+}
+*/
+        .include "address_map_arm.s"
+        .text
+        .global _start
+_start: LDR     R8, =KEY_BASE
+   0:	e59f809c 	ldr	r8, [pc, #156]	; a4 <DelayPoll+0x14>
+        LDR     R9, =LEDR_BASE
+   4:	e59f909c 	ldr	r9, [pc, #156]	; a8 <DelayPoll+0x18>
+        LDR     R10, =MPCORE_PRIV_TIMER
+   8:	e59fa09c 	ldr	r10, [pc, #156]	; ac <DelayPoll+0x1c>
+        LDR     R11, =20000000
+   c:	e59fb09c 	ldr	r11, [pc, #156]	; b0 <DelayPoll+0x20>
+        MOV     R4, #1
+  10:	e3a04001 	mov	r4, #1
+        MOV     R5, #0
+  14:	e3a05000 	mov	r5, #0
+
+00000018 <ShiftL>:
+ShiftL: BL      CheckKey
+  18:	eb00000e 	bl	58 <CheckKey>
+        STR     R4, [R9]
+  1c:	e5894000 	str	r4, [r9]
+        BL      Delay
+  20:	eb000017 	bl	84 <Delay>
+        CMP     R5, #9
+  24:	e3550009 	cmp	r5, #9
+        BEQ     ShiftR
+  28:	0a000002 	beq	38 <ShiftR>
+        LSL     R4, R4, #1
+  2c:	e1a04084 	lsl	r4, r4, #1
+        ADD     R5, R5, #1
+  30:	e2855001 	add	r5, r5, #1
+        B       ShiftL
+  34:	eafffff7 	b	18 <ShiftL>
+
+00000038 <ShiftR>:
+ShiftR: BL      CheckKey
+  38:	eb000006 	bl	58 <CheckKey>
+        STR     R4, [R9]
+  3c:	e5894000 	str	r4, [r9]
+        BL      Delay
+  40:	eb00000f 	bl	84 <Delay>
+        CMP     R5, #0
+  44:	e3550000 	cmp	r5, #0
+        BEQ     ShiftL
+  48:	0afffff2 	beq	18 <ShiftL>
+        LSR     R4, R4, #1
+  4c:	e1a040a4 	lsr	r4, r4, #1
+        SUB     R5, R5, #1
+  50:	e2455001 	sub	r5, r5, #1
+        B       ShiftR
+  54:	eafffff7 	b	38 <ShiftR>
+
+00000058 <CheckKey>:
+
+CheckKey:MOV    R2, #0
+  58:	e3a02000 	mov	r2, #0
+
+0000005c <CheckLoop>:
+CheckLoop:LDR   R3, [R8]
+  5c:	e5983000 	ldr	r3, [r8]
+        CMP     R3, #0b1000
+  60:	e3530008 	cmp	r3, #8
+        BNE     NoKey
+  64:	1a000003 	bne	78 <NoKey>
+
+00000068 <PauseLoop>:
+PauseLoop:LDR   R3, [R8]
+  68:	e5983000 	ldr	r3, [r8]
+        CMP     R3, #0b1000
+  6c:	e3530008 	cmp	r3, #8
+        BEQ     PauseLoop
+  70:	0afffffc 	beq	68 <PauseLoop>
+        MVN     R2, R2
+  74:	e1e02002 	mvn	r2, r2
+
+00000078 <NoKey>:
+NoKey:  CMP     R2, #0
+  78:	e3520000 	cmp	r2, #0
+        MOVEQ   PC, LR
+  7c:	01a0f00e 	moveq	pc, lr
+        B       CheckLoop
+  80:	eafffff5 	b	5c <CheckLoop>
+
+00000084 <Delay>:
+
+Delay:  STR     R11, [R10]
+  84:	e58ab000 	str	r11, [r10]
+        LDR     R3, =0b11
+  88:	e3a03003 	mov	r3, #3
+        STR     R3, [R10, #8]
+  8c:	e58a3008 	str	r3, [r10, #8]
+
+00000090 <DelayPoll>:
+DelayPoll:LDR   R3, [R10, #0xC]
+  90:	e59a300c 	ldr	r3, [r10, #12]
+        CMP     R3, #0
+  94:	e3530000 	cmp	r3, #0
+        BEQ     DelayPoll
+  98:	0afffffc 	beq	90 <DelayPoll>
+        STR     R3, [R10, #0xC]
+  9c:	e58a300c 	str	r3, [r10, #12]
+        MOV     PC, LR
+  a0:	e1a0f00e 	mov	pc, lr
+  a4:	ff200050 	.word	0xff200050
+  a8:	ff200000 	.word	0xff200000
+  ac:	fffec600 	.word	0xfffec600
+  b0:	01312d00 	.word	0x01312d00

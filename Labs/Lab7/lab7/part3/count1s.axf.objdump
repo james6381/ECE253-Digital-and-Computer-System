@@ -1,0 +1,83 @@
+
+//SRVB/Homes$/shirunji/Desktop/lab7/part3/count1s.axf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__cs3_interrupt_vector>:
+	.text
+	.global _start
+_start:
+		MOV 	R4, #0		//Current word
+   0:	e3a04000 	mov	r4, #0
+		MOV 	R5, #0		//Current longest 
+   4:	e3a05000 	mov	r5, #0
+		LDR 	R6, =TEST_NUM
+   8:	e59f6084 	ldr	r6, [pc, #132]	; 94 <TEST_NUM+0x3c>
+
+0000000c <MAINLOOP>:
+MAINLOOP: LDR R1, [R6, +R4] // load the data word into R1
+   c:	e7961004 	ldr	r1, [r6, r4]
+		CMP R1, R6
+  10:	e1510006 	cmp	r1, r6
+		BEQ END
+  14:	0a000006 	beq	34 <END>
+		STMDB	SP!, {R4,R5,R6}
+  18:	e92d0070 	push	{r4, r5, r6}
+		BL		ONES
+  1c:	eb000005 	bl	38 <ONES>
+		LDMIA	SP!, {R4,R5,R6}
+  20:	e8bd0070 	pop	{r4, r5, r6}
+		ADD 	R4, #4
+  24:	e2844004 	add	r4, r4, #4
+		CMP 	R5, R0
+  28:	e1550000 	cmp	r5, r0
+		MOVLT 	R5, R0
+  2c:	b1a05000 	movlt	r5, r0
+		B 		MAINLOOP
+  30:	eafffff5 	b	c <MAINLOOP>
+
+00000034 <END>:
+END: 	B 		END
+  34:	eafffffe 	b	34 <END>
+
+00000038 <ONES>:
+
+ONES:	MOV R0, #0 // R0 will hold the result
+  38:	e3a00000 	mov	r0, #0
+
+0000003c <LOOP>:
+LOOP: 	CMP R1, #0 // loop until the data contains no more 1s
+  3c:	e3510000 	cmp	r1, #0
+		BEQ END_ONES
+  40:	0a000003 	beq	54 <END_ONES>
+		LSR R2, R1, #1 // perform SHIFT, followed by AND
+  44:	e1a020a1 	lsr	r2, r1, #1
+		AND R1, R1, R2
+  48:	e0011002 	and	r1, r1, r2
+		ADD R0, #1 // count the string lengths so far
+  4c:	e2800001 	add	r0, r0, #1
+		B LOOP
+  50:	eafffff9 	b	3c <LOOP>
+
+00000054 <END_ONES>:
+END_ONES: MOV PC, LR
+  54:	e1a0f00e 	mov	pc, lr
+
+00000058 <TEST_NUM>:
+  58:	ffffffff 	.word	0xffffffff
+  5c:	103fe00f 	.word	0x103fe00f
+  60:	103fe00e 	.word	0x103fe00e
+  64:	103fe00d 	.word	0x103fe00d
+  68:	103fe00c 	.word	0x103fe00c
+  6c:	103fe00b 	.word	0x103fe00b
+  70:	103fe00a 	.word	0x103fe00a
+  74:	103fe009 	.word	0x103fe009
+  78:	103fe008 	.word	0x103fe008
+  7c:	103fe007 	.word	0x103fe007
+  80:	103fe006 	.word	0x103fe006
+  84:	103fe005 	.word	0x103fe005
+  88:	103fe004 	.word	0x103fe004
+  8c:	103fe003 	.word	0x103fe003
+  90:	ffffffff 	.word	0xffffffff
+  94:	00000058 	.word	0x00000058

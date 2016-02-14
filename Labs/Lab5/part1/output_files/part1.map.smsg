@@ -1,0 +1,6 @@
+Info (10281): Verilog HDL Declaration information at part1.v(1): object "Q_a" differs only in case from object "q_a" in the same scope
+Info (10281): Verilog HDL Declaration information at part1.v(1): object "notQ_a" differs only in case from object "notq_a" in the same scope
+Info (10281): Verilog HDL Declaration information at part1.v(1): object "Q_b" differs only in case from object "q_b" in the same scope
+Info (10281): Verilog HDL Declaration information at part1.v(1): object "notQ_b" differs only in case from object "notq_b" in the same scope
+Info (10281): Verilog HDL Declaration information at part1.v(1): object "Q_c" differs only in case from object "q_c" in the same scope
+Info (10281): Verilog HDL Declaration information at part1.v(1): object "notQ_c" differs only in case from object "notq_c" in the same scope

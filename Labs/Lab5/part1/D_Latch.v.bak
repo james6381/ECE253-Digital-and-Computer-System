@@ -1,0 +1,6 @@
+module D_Latch(input D, clock, output reg Q, notQ)
+	always @(clock)
+		if (clock == 1)
+			Q <= D
+			notQ <= ~Q
+endmodule

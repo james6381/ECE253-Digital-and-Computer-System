@@ -1,0 +1,34 @@
+|part1
+D => D.IN3
+clock => clock.IN2
+q_a <= D_Latch:D0.port2
+notq_a <= D_Latch:D0.port3
+q_b <= FF:F0.port2
+notq_b <= FF:F0.port3
+q_c <= FF:F1.port2
+notq_c <= FF:F1.port3
+
+
+|part1|D_Latch:D0
+D => Q$latch.DATAIN
+clock => Q$latch.LATCH_ENABLE
+Q <= Q$latch.DB_MAX_OUTPUT_PORT_TYPE
+notQ <= Q$latch.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|FF:F0
+D => Q~reg0.DATAIN
+clock => notQ~reg0.CLK
+clock => Q~reg0.CLK
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+notQ <= notQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|FF:F1
+D => Q~reg0.DATAIN
+clock => notQ~reg0.CLK
+clock => Q~reg0.CLK
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+notQ <= notQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

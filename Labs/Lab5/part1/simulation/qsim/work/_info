@@ -1,0 +1,90 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Haowei/Desktop/U of T Courses/Year 2 Fall/ECE253/Labs/Lab5/part1/simulation/qsim
+vpart1
+Z1 !s110 1445906625
+!i10b 1
+!s100 XC>KDP;gV3JEVS>WojRC82
+I>i4Q9PgIQdWHB;4@gCaEM2
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+w1445906619
+8part1.vo
+Fpart1.vo
+L0 32
+Z3 OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1445906624.651000
+!s107 part1.vo|
+!s90 -work|work|part1.vo|
+!i113 1
+Z4 o-work work
+vpart1_vlg_check_tst
+R1
+!i10b 1
+!s100 Nml_f=c5mi<Mo0DH8TG662
+IYIzFl6OU:BlL>L4f][<:f0
+R2
+R0
+Z5 w1445906613
+Z6 8simulation_part1.vwf.vt
+Z7 Fsimulation_part1.vwf.vt
+L0 60
+R3
+r1
+!s85 0
+31
+Z8 !s108 1445906625.269000
+Z9 !s107 simulation_part1.vwf.vt|
+Z10 !s90 -work|work|simulation_part1.vwf.vt|
+!i113 1
+R4
+vpart1_vlg_sample_tst
+R1
+!i10b 1
+!s100 VGJ<Oo9d_nEXX>;D0SM=S1
+IGPV?b_TBBG:XUI2QT^m7Q0
+R2
+R0
+R5
+R6
+R7
+L0 30
+R3
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R4
+vpart1_vlg_vec_tst
+R1
+!i10b 1
+!s100 B>S5AJUPZ`NLNVgjR_ddO0
+ICgPfYD`fUSB:9Qb2PPj>61
+R2
+R0
+R5
+R6
+R7
+L0 290
+R3
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R4

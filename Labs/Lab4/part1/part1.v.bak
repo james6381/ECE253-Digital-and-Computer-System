@@ -1,0 +1,2 @@
+module part1(input [7:0]SW, output HEX1, HEX0);
+	
